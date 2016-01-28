@@ -106,9 +106,9 @@
 
 - (void)simpleDemoOfSwizzling
 {
-    NSMutableArray *obj1 = [NSMutableArray array];
-    [obj1 addObject:nil];
-    NSLog(@"The array's last object is :%@",obj1.lastObject);
+    NSMutableArray *tempArray = [NSMutableArray array];
+    [tempArray addObject:nil];
+    NSLog(@"The array's last object is :%@",tempArray.lastObject);
     //会发现打印结果为：
     //NSArray is empty
     //The array's last object is :(null)
