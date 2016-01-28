@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import <objc/runtime.h>
 #import "Person.h"
+#import "NSMutableArray+Swizzling.h"
 
 @interface ViewController ()
 
@@ -31,8 +32,12 @@
     //4.重定向
     [self redirect];
     
-    Person *person = [Person new];
-    person.identifier = @"iyaqi";
+    //5.转发
+    [self forward];
+    
+    //6.Swizzling的简单使用
+    [self simpleDemoOfSwizzling];
+    
 }
 
 /**
@@ -89,6 +94,26 @@
     NSInteger weightValue = person.weight;
     NSLog(@"%ld",weightValue); //666
 }
+
+/**
+ *  转发
+ */
+- (void)forward{
+    Person *person = [Person new];
+    person.identifier = @"iyaqi";
+}
+
+
+- (void)simpleDemoOfSwizzling
+{
+    NSMutableArray *obj1 = [NSMutableArray array];
+    [obj1 addObject:nil];
+    NSLog(@"The array's last object is :%@",obj1.lastObject);
+    //会发现打印结果为：
+    //NSArray is empty
+    //The array's last object is :(null)
+}
+
 
 
 @end
